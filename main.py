@@ -14,9 +14,14 @@
 
 from pytranscriber.control.ctr_main import Ctr_Main
 import multiprocessing
+import socks
+import socket
 
 if __name__ == '__main__':
+    socks.set_default_proxy(socks.HTTP, '127.0.0.1', 7890)
+    socket.socket = socks.socksocket
     multiprocessing.freeze_support()
     import sys
+
     ctrMain = Ctr_Main()
     sys.exit(main())
